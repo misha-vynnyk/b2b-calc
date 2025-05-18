@@ -1,54 +1,86 @@
-# React + TypeScript + Vite
+🧾 Ryczałt Income Tracker
+Сучасний трекер доходів для самозайнятих у Польщі. Підраховує річні доходи, автоматично обчислює ryczałt-податок (według stawki %), будує графік по місяцях і дає можливість експортувати CSV.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔧 Функціонал
+✅ Додавання доходу з датою, сумою та джерелом
 
-Currently, two official plugins are available:
+✅ Автоматичний підрахунок податку (ставка залежить від джерела)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ Фільтрація по місяцю та типу доходу
 
-## Expanding the ESLint configuration
+✅ Графік доходів по місяцях (Recharts)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+✅ Експорт у .csv
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+✅ Збереження даних у localStorage
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+✅ Модерний темний інтерфейс зі styled-components
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+📸 Інтерфейс
+Таблиця доходів Графік по місяцях
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+🚀 Швидкий старт
+bash
+Копіювати код
+
+# Клонуй репозиторій
+
+git clone https://github.com/your-username/b2b-calc.git
+
+cd ryczalt-tracker
+
+# Встанови залежності
+
+npm install
+
+# Запусти локально
+
+npm run dev
+Потім відкрий у браузері:
+👉 http://localhost:5173
+
+⚠️ Потрібен Node.js 18+ та npm.
+
+📁 Структура
+css
+Копіювати код
+📁 src
+├── components
+│ ├── FilterBar.tsx
+│ ├── IncomeRow.tsx
+│ ├── IncomeChart.tsx
+│ ├── SummaryBar.tsx
+│ └── ExportButton.tsx
+├── App.tsx
+└── main.tsx
+🧮 Ставки податку
+ts
+Копіювати код
+Glovo => 8.5%
+Web Development => 8.5%
+Photography => 15%
+Rent => 8.5%
+🧠 Ідеї на майбутнє
+🔐 Авторизація + збереження даних у Firebase
+
+☁️ Хмара + багатокористувацький режим
+
+📅 Генерація PDF декларації
+
+📱 Мобільна адаптація
+
+📊 Додаткові типи графіків
+
+💡 Для кого цей трекер?
+Ідеально підходить для фрілансерів, які працюють за ryczałtem, особливо:
+
+курʼєри Glovo / UberEats
+
+фріланс-розробники
+
+фотографи
+
+орендодавці
+
+📃 Ліцензія
+MIT — використовуй як хочеш, але лишай згадку про автора, якщо поширюєш 😉
