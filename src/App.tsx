@@ -6,6 +6,8 @@ import { IncomeRow } from "./components/IncomeRow/IncomeRow";
 import { SummaryBar } from "./components/SummaryBar/SummaryBar";
 import { ExportButton } from "./components/ExportButton/ExportButton";
 import { IncomeChart } from "./components/IncomeChart/IncomeChart";
+import { TaxCalculator } from "./components/TaxCalculator/TaxCalculator";
+import { CurrencyConverter } from "./components/CurrencyConverter/CurrencyConverter";
 
 export type IncomeSource = "Glovo" | "Web Development" | "Rent" | "Photography";
 
@@ -133,6 +135,10 @@ export const App = () => {
     <>
       <GlobalStyle />
       <h1>Ryczałt Income Tracker</h1>
+
+      <CurrencyConverter />
+
+      <TaxCalculator />
 
       <FilterBar
         month={filterMonth}
