@@ -1,29 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-
-const FilterContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-
-  select {
-    background-color: #2c2c2c;
-    color: #eee;
-    border: 1px solid #555;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    min-width: 150px;
-    cursor: pointer;
-    transition: border-color 0.3s;
-
-    &:focus {
-      outline: none;
-      border-color: #4e91fc;
-    }
-  }
-`;
+import { FilterContainer } from "./StyledFilterBar";
 
 interface FilterBarProps {
   month: string;

@@ -1,45 +1,13 @@
 import { useState } from "react";
-import styled from "styled-components";
-
-// Styled Components
-const Wrapper = styled.div`
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  background: #1e1e1e;
-  padding: 1.5rem;
-  border-radius: 10px;
-  color: #eee;
-  max-width: 100%;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-top: 1rem;
-`;
-
-const Input = styled.input`
-  margin-top: 0.3rem;
-  padding: 0.5rem;
-  width: 100%;
-  background-color: #2c2c2c;
-  color: white;
-  border: 1px solid #444;
-  border-radius: 6px;
-`;
-
-const RadioGroup = styled.div`
-  margin-top: 1rem;
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-`;
-
-const Result = styled.div`
-  margin-top: 1.5rem;
-  font-weight: bold;
-`;
+import {
+  Input,
+  RadioGroup,
+  Result,
+  ResultContainer,
+  Title,
+  Wrapper,
+  Label,
+} from "./StyledTaxCalculator";
 
 // Тип для ZUS
 type ZusType = "UlgaStart" | "MalyZUS" | "PelnyZUS" | "None";
@@ -75,13 +43,12 @@ export const TaxCalculator = () => {
 
   return (
     <Wrapper>
-      <h2>Tax Calculator</h2>
+      <Title>Tax Calculator</Title>
 
       <Label>
         Income (zł):
         <Input
           type="number"
-          value={income}
           onChange={(e) => setIncome(Number(e.target.value))}
         />
       </Label>
@@ -134,12 +101,13 @@ export const TaxCalculator = () => {
           </label>
         </form>
       </RadioGroup>
-
-      <Result>📦 Ryczałt Tax: {tax.toFixed(2)} zł</Result>
-      <Result>🏥 Health Insurance: {healthInsurance.toFixed(2)} zł</Result>
-      <Result>👷 Social Insurance: {socialInsurance.toFixed(2)} zł</Result>
-      <Result>💸 Total ZUS: {zus.toFixed(2)} zł</Result>
-      <Result>💰 After Tax: {afterTax.toFixed(2)} zł</Result>
+      <ResultContainer>
+        <Result>📦 Ryczałt Tax: {tax.toFixed(2)} zł</Result>
+        <Result>🏥 Health Insurance: {healthInsurance.toFixed(2)} zł</Result>
+        <Result>👷 Social Insurance: {socialInsurance.toFixed(2)} zł</Result>
+        <Result>💸 Total ZUS: {zus.toFixed(2)} zł</Result>
+        <Result>💰 After Tax: {afterTax.toFixed(2)} zł</Result>
+      </ResultContainer>
     </Wrapper>
   );
 };

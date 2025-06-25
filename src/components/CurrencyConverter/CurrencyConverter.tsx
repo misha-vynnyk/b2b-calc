@@ -1,44 +1,12 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  margin-top: 2rem;
-  background: #1e1e1e;
-  padding: 1.5rem;
-  border-radius: 10px;
-  color: #eee;
-  max-width: 500px;
-`;
-
-const Label = styled.label`
-  display: block;
-  margin-top: 1rem;
-`;
-
-const Input = styled.input`
-  margin-top: 0.3rem;
-  padding: 0.5rem;
-  width: 100%;
-  background-color: #2c2c2c;
-  color: white;
-  border: 1px solid #444;
-  border-radius: 6px;
-`;
-
-const Select = styled.select`
-  margin-top: 0.3rem;
-  padding: 0.5rem;
-  width: 100%;
-  background-color: #2c2c2c;
-  color: white;
-  border: 1px solid #444;
-  border-radius: 6px;
-`;
-
-const Result = styled.div`
-  margin-top: 1.5rem;
-  font-weight: bold;
-`;
+import {
+  Input,
+  Result,
+  Select,
+  Wrapper,
+  Label,
+  CurrencyTitle,
+} from "./StyledCurrencyConverter";
 
 const API_KEY = import.meta.env.VITE_EXCHANGE_API_KEY;
 const BASE_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/`;
@@ -84,13 +52,12 @@ export const CurrencyConverter = () => {
 
   return (
     <Wrapper>
-      <h2>Currency Converter</h2>
+      <CurrencyTitle>Currency Converter</CurrencyTitle>
 
       <Label>
         Amount:
         <Input
           type="number"
-          value={amount}
           onChange={(e) => setAmount(Number(e.target.value))}
         />
       </Label>
