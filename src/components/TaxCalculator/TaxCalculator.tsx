@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Input,
   RadioGroup,
@@ -8,6 +8,7 @@ import {
   Wrapper,
   Label,
 } from "./StyledTaxCalculator";
+import { useCurrency } from "../../contexts/useCurrency";
 
 // Тип для ZUS
 type ZusType = "UlgaStart" | "MalyZUS" | "PelnyZUS" | "None";
@@ -32,6 +33,7 @@ export const TaxCalculator = () => {
   const [income, setIncome] = useState<number>(0);
   const [rate, setRate] = useState<number>(8.5);
   const [zusType, setZusType] = useState<ZusType>("None");
+  const { sentAmount } = useCurrency();
 
   const tax = income * (rate / 100);
   const annualTax = tax * 12;
@@ -41,6 +43,12 @@ export const TaxCalculator = () => {
   const total = tax + zus;
   const afterTax = income - total;
 
+  useEffect(() => {
+    if (sentAmount !== null) {
+      setIncome(sentAmount);
+    }
+  }, [sentAmount]);
+
   return (
     <Wrapper>
       <Title>Tax Calculator</Title>
@@ -48,6 +56,7 @@ export const TaxCalculator = () => {
       <Label>
         Income (zł):
         <Input
+          value={income}
           type="number"
           onChange={(e) => setIncome(Number(e.target.value))}
         />

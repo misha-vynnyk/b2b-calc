@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { TAX_RATE, type IncomeSource } from "../../App";
 import { FilterBar } from "../FilterBar/FilterBar";
 import { AddButton, Table, TableContainer, TBody, Th, Thead } from "./StyledIncomeTable";
 import { IncomeRow } from "../IncomeRow/IncomeRow";
 import { SummaryBar } from "../SummaryBar/SummaryBar";
 import { IncomeChart } from "../IncomeChart/IncomeChart";
 import { ExportButton } from "../ExportButton/ExportButton";
+import type { IncomeSource } from "../../types/income";
+import { TAX_RATE } from "../../constants/taxRate";
 
 interface Entry {
   id: number;

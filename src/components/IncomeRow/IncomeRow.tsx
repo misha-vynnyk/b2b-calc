@@ -1,10 +1,9 @@
 import React from "react";
-import { TAX_RATE } from "../../App";
 import { ButtonContainer, DateInput, DeleteButton, StyledInput, StyledSelect, Td, Tr } from "./StyledIncomeRow";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-type IncomeSource = "Glovo" | "Web Development" | "Rent" | "Photography";
+import { TAX_RATE } from "../../constants/taxRate";
+import type { IncomeSource } from "../../types/income";
 
 interface Entry {
   id: number;
