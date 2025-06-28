@@ -30,18 +30,19 @@ const getHealthInsurance = (annualTax: number): number => {
 
 // Компонент
 export const TaxCalculator = () => {
-  const [income, setIncome] = useState<number>(0);
+  const [income, setIncome] = useState<number | ''>('');
   const [rate, setRate] = useState<number>(8.5);
   const [zusType, setZusType] = useState<ZusType>("None");
   const { sentAmount } = useCurrency();
 
-  const tax = income * (rate / 100);
+  const validIncome = typeof income === "number" ? income : 0;
+  const tax = validIncome * (rate / 100);
   const annualTax = tax * 12;
   const healthInsurance = getHealthInsurance(annualTax);
   const socialInsurance = SOCIAL_CONTRIBUTIONS[zusType];
   const zus = healthInsurance + socialInsurance;
   const total = tax + zus;
-  const afterTax = income - total;
+  const afterTax = validIncome - total;
 
   useEffect(() => {
     if (sentAmount !== null) {
@@ -56,9 +57,16 @@ export const TaxCalculator = () => {
       <Label>
         Income (zł):
         <Input
+          type="text"
           value={income}
-          type="number"
-          onChange={(e) => setIncome(Number(e.target.value))}
+          onChange={(e) => {
+            const val = e.target.value;
+            if (val === '') {
+              setIncome('');
+            } else if (!isNaN(Number(val))) {
+              setIncome(Number(val));
+            }
+          }}
         />
       </Label>
 

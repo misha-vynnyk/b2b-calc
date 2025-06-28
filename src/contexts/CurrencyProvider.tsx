@@ -10,16 +10,26 @@ const BASE_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/`;
 
 export const CurrencyProvider = ({ children }: { children: ReactNode }) => {
   const [amount, setAmount] = useState(0);
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("PLN");
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrency] = useState("");
   const [rates, setRates] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const currencies = ["USD", "PLN", "EUR", "GBP", "UAH"];
   const [sentAmount, setSentAmount] = useState<number | null>(null);
+
+  const currencies = [
+    { value: "USD", label: "USD" },
+    { value: "PLN", label: "PLN" },
+    { value: "EUR", label: "EUR" },
+    { value: "GBP", label: "GBP" },
+    { value: "UAH", label: "UAH" },
+  ];
+
 
 
   useEffect(() => {
+    if (!fromCurrency) return;
+
     const fetchRates = async () => {
       setLoading(true);
       setError(null);

@@ -1,3 +1,8 @@
+export interface CurrencyOption {
+  value: string;
+  label: string;
+}
+
 export interface CurrencyContextType {
   amount: number;
   fromCurrency: string;
@@ -5,7 +10,7 @@ export interface CurrencyContextType {
   rates: Record<string, number>;
   loading: boolean;
   error: string | null;
-  currencies: string[];
+  currencies: CurrencyOption[];
   setAmount: (value: number) => void;
   setFromCurrency: (currency: string) => void;
   setToCurrency: (currency: string) => void;
