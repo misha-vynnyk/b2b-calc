@@ -1,21 +1,34 @@
 import styled from "styled-components";
 
+const textColor = "#ffffff";
+
 export const MainWrapper = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  padding: 1.5rem;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   gap: 1rem;
   transition: all 0.3s ease-in-out;
+  backdrop-filter: url(#liquidGlassFilter) brightness(1.1);
+`;
 
-  @media (max-width: 425px) {
-    padding: 1rem;
-  }
+export const BlurWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.326);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(0, 0, 0, 0.4);
+
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
 `;
 
 export const Wrapper = styled.div`
@@ -31,11 +44,13 @@ export const FromToContainer = styled.div`
 
 export const CurrencyTitle = styled.h2`
   text-align: center;
+  color: ${textColor};
   font-size: 1rem;
 `;
 
 export const Label = styled.label`
   position: absolute;
+  color: ${textColor};
   top: 30%;
   left: 10px;
   transition: 0.2s ease all;
@@ -49,7 +64,7 @@ export const Input = styled.input`
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   box-shadow: 0 0 0 2px #4f9eff40;
-  color: white;
+  color: ${textColor};
   border: 1px solid #666;
   border-radius: 16px;
 
@@ -67,6 +82,7 @@ export const Input = styled.input`
 `;
 
 export const Result = styled.div`
+  color: ${textColor};
   margin-top: 1.5rem;
   font-weight: bold;
 `;
@@ -76,7 +92,7 @@ export const SendButton = styled.button`
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;
   padding: 14px 24px;
-  color: white;
+  color: ${textColor};
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -103,7 +119,7 @@ export const FloatingLabelTo = styled.label<{ $isActive?: boolean }>`
   top: ${({ $isActive }) => ($isActive ? "-10%" : "50%")};
   transform: ${({ $isActive }) => ($isActive ? "translateY(-100%)" : "translateY(-50%)")};
   font-size: ${({ $isActive }) => ($isActive ? "12px" : "16px")};
-  color: #ffffff;
+  color: ${textColor};
   padding: 0 4px;
   transition: all 0.3s ease;
   pointer-events: none;
@@ -117,7 +133,7 @@ export const FloatingLabelFrom = styled.label<{ $isActive?: boolean }>`
   top: ${({ $isActive }) => ($isActive ? "-10%" : "50%")};
   transform: ${({ $isActive }) => ($isActive ? "translateY(-100%)" : "translateY(-50%)")};
   font-size: ${({ $isActive }) => ($isActive ? "12px" : "16px")};
-  color: #ffffff;
+  color: ${textColor};
   padding: 0 4px;
   transition: all 0.3s ease;
   pointer-events: none;

@@ -43,10 +43,11 @@ export const Container = styled.div`
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   color: #f0f0f0;
 
-  background-image: url("./public/main-bg.jpg");
+  background-image: url("main-bg.jpg");
+  background-image: url("main-bg-2.jpg");
   /* background-image: url("./public/main-bg-dark.png"); */
   /* background-image: url("./public/a-light-theme-bg.jpeg"); */
-  background-position: center;
+  background-position: top;
   background-size: cover;
 
   @media (max-width: 768px) {

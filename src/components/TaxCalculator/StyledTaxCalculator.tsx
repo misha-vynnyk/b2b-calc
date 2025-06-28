@@ -1,15 +1,24 @@
 import styled from "styled-components";
 
+const textColor = "#000000"
+
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
   margin-bottom: 3rem;
-  background-color: #444343;
   padding: 1.5rem;
-  border-radius: 10px;
-  color: #ffffff;
-  width: 100%;
+  color: ${textColor};
+
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: all 0.3s ease-in-out;
+
+  /* backdrop-filter: url(#liquidGlassFilter) brightness(1.1); */
 `;
 
 export const Title = styled.h2`
