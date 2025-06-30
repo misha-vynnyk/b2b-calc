@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import {
-  Input,
-  RadioGroup,
-  Result,
-  ResultContainer,
-  Title,
-  Wrapper,
-  Label,
-} from "./StyledTaxCalculator";
+import { RadioGroup, Result, ResultContainer, Title, Wrapper } from "./StyledTaxCalculator";
 import { useCurrency } from "../../contexts/useCurrency";
+import {
+  GlassBackground,
+  Input,
+  MainWrapper,
+  InputWrapper,
+  Label,
+  TwoInputsContainer,
+} from "../CurrencyConverter/StyledCurrencyConverter";
 
 // Тип для ZUS
 type ZusType = "UlgaStart" | "MalyZUS" | "PelnyZUS" | "None";
@@ -30,7 +30,7 @@ const getHealthInsurance = (annualTax: number): number => {
 
 // Компонент
 export const TaxCalculator = () => {
-  const [income, setIncome] = useState<number | ''>('');
+  const [income, setIncome] = useState<number | "">("");
   const [rate, setRate] = useState<number>(8.5);
   const [zusType, setZusType] = useState<ZusType>("None");
   const { sentAmount } = useCurrency();
@@ -52,79 +52,82 @@ export const TaxCalculator = () => {
 
   return (
     <Wrapper>
-      <Title>Tax Calculator</Title>
+      <MainWrapper>
+        <GlassBackground>
+          <Title>Tax Calculator</Title>
+          <TwoInputsContainer>
+            <InputWrapper>
+              <Input
+                placeholder=' '
+                type='text'
+                value={income}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val === "") {
+                    setIncome("");
+                  } else if (!isNaN(Number(val))) {
+                    setIncome(Number(val));
+                  }
+                }}
+              />
+              <Label>Income (zł):</Label>
+            </InputWrapper>
+            <InputWrapper>
+              <Input
+                type='number'
+                step='0.1'
+                onChange={(e) => setRate(Number(e.target.value))}
+              />
+              <Label> Ryczałt rate (%):</Label>
+            </InputWrapper>
+          </TwoInputsContainer>
+          <RadioGroup>
+            <strong>Social contribution (ZUS):</strong>
 
-      <Label>
-        Income (zł):
-        <Input
-          type="text"
-          value={income}
-          onChange={(e) => {
-            const val = e.target.value;
-            if (val === '') {
-              setIncome('');
-            } else if (!isNaN(Number(val))) {
-              setIncome(Number(val));
-            }
-          }}
-        />
-      </Label>
+            <form>
+              <label>
+                <input
+                  type='radio'
+                  name='zus'
+                  value='None'
+                  checked={zusType === "None"}
+                  onChange={() => setZusType("None")}
+                />
+                Ulga na start (only tax + health)
+              </label>
 
-      <Label>
-        Ryczałt rate (%):
-        <Input
-          type="number"
-          step="0.1"
-          value={rate}
-          onChange={(e) => setRate(Number(e.target.value))}
-        />
-      </Label>
+              <label>
+                <input
+                  type='radio'
+                  name='zus'
+                  value='MalyZUS'
+                  checked={zusType === "MalyZUS"}
+                  onChange={() => setZusType("MalyZUS")}
+                />
+                Maly ZUS (341.72 zł)
+              </label>
 
-      <RadioGroup>
-        <strong>Social contribution (ZUS):</strong>
-
-        <form>
-          <label>
-            <input
-              type="radio"
-              name="zus"
-              value="None"
-              checked={zusType === "None"}
-              onChange={() => setZusType("None")}
-            />
-            Ulga na start (only tax + health)
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="zus"
-              value="MalyZUS"
-              checked={zusType === "MalyZUS"}
-              onChange={() => setZusType("MalyZUS")}
-            />
-            Maly ZUS (341.72 zł)
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              name="zus"
-              value="PelnyZUS"
-              checked={zusType === "PelnyZUS"}
-              onChange={() => setZusType("PelnyZUS")}
-            />
-            Pelny ZUS (1294.64 zł)
-          </label>
-        </form>
-      </RadioGroup>
-      <ResultContainer>
-        <Result>📦 Ryczałt Tax: {tax.toFixed(2)} zł</Result>
-        <Result>🏥 Health Insurance: {healthInsurance.toFixed(2)} zł</Result>
-        <Result>👷 Social Insurance: {socialInsurance.toFixed(2)} zł</Result>
-        <Result>💸 Total ZUS: {zus.toFixed(2)} zł</Result>
-        <Result>💰 After Tax: {afterTax.toFixed(2)} zł</Result>
-      </ResultContainer>
+              <label>
+                <input
+                  type='radio'
+                  name='zus'
+                  value='PelnyZUS'
+                  checked={zusType === "PelnyZUS"}
+                  onChange={() => setZusType("PelnyZUS")}
+                />
+                Pelny ZUS (1294.64 zł)
+              </label>
+            </form>
+          </RadioGroup>
+          <ResultContainer>
+            <Result>📦 Ryczałt Tax: {tax.toFixed(2)} zł</Result>
+            <Result>🏥 Health Insurance: {healthInsurance.toFixed(2)} zł</Result>
+            <Result>👷 Social Insurance: {socialInsurance.toFixed(2)} zł</Result>
+            <Result>💸 Total ZUS: {zus.toFixed(2)} zł</Result>
+            <Result>💰 After Tax: {afterTax.toFixed(2)} zł</Result>
+          </ResultContainer>
+        </GlassBackground>
+      </MainWrapper>
     </Wrapper>
   );
 };

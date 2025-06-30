@@ -44,7 +44,7 @@ export const Container = styled.div`
   color: #f0f0f0;
 
   background-image: url("main-bg.jpg");
-  background-image: url("main-bg-2.jpg");
+  /* background-image: url("main-bg-2.jpg"); */
   /* background-image: url("./public/main-bg-dark.png"); */
   /* background-image: url("./public/a-light-theme-bg.jpeg"); */
   background-position: top;
@@ -57,6 +57,7 @@ export const Container = styled.div`
 
 export const Title = styled.h1`
   font-size: 2rem;
+  padding-bottom: 1rem;
 
   @media (max-width: 425px) {
     font-size: 1.5rem;

@@ -1,65 +1,24 @@
-import Select, { type StylesConfig } from "react-select";
+import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { useCurrency } from "../../contexts/useCurrency";
 import {
   Input,
   Result,
-  Wrapper,
   Label,
   CurrencyTitle,
-  FromToContainer,
+  TwoInputsContainer,
   MainWrapper,
   FloatingLabelFrom,
   FloatingLabelTo,
   SendButton,
-  BlurWrapper,
+  GlassBackground,
+  InputWrapper,
+  customStyles,
 } from "./StyledCurrencyConverter";
 import type { CurrencyOption } from "../../contexts/CurrencyContext.types";
 import { useState } from "react";
 
 const animatedComponents = makeAnimated();
-
-const customStyles: StylesConfig<CurrencyOption, false> = {
-  control: (base, state) => ({
-    ...base,
-    minWidth: "150px",
-    backgroundColor: "rgba(255,255,255,0.05)",
-    borderColor: state.isFocused ? "#4f9eff" : "#666",
-    boxShadow: state.isFocused ? "0 0 0 2px #4f9eff40" : "none",
-    transition: "all 0.3s ease",
-    borderRadius: "16px",
-    padding: "4px 6px",
-    color: "white",
-    fontSize: "16px",
-    backdropFilter: "blur(12px)",
-  }),
-  menu: (base) => ({
-    ...base,
-    backgroundColor: "#2c2c2c",
-    borderRadius: "10px",
-    overflow: "hidden",
-    animation: "fadeIn 0.3s ease forwards",
-  }),
-  option: (base, state) => ({
-    ...base,
-    backgroundColor: state.isFocused ? "#444" : "#2c2c2c",
-    color: "white",
-    cursor: "pointer",
-    transition: "all 0.2s ease",
-  }),
-  singleValue: (base) => ({
-    ...base,
-    color: "white",
-  }),
-  placeholder: (base) => ({
-    ...base,
-    color: "#999",
-  }),
-  input: (base) => ({
-    ...base,
-    color: "white",
-  }),
-};
 
 export const CurrencyConverter = () => {
   const {
@@ -102,7 +61,7 @@ export const CurrencyConverter = () => {
           <feTurbulence
             type='fractalNoise'
             baseFrequency='0.03 0.03'
-            numOctaves='3'
+            numOctaves='1'
             seed='0'
             result='turbulence'
           />
@@ -110,25 +69,23 @@ export const CurrencyConverter = () => {
           <feDisplacementMap
             in='SourceGraphic'
             in2='turbulence'
-            scale='30'
+            scale='40'
             xChannelSelector='R'
             yChannelSelector='G'
           />
           {/* scale: регулює інтенсивність викривлення. Змінюйте це значення, щоб побачити ефект */}
         </filter>
       </svg>
-
-      <BlurWrapper>
+      <GlassBackground>
         <CurrencyTitle>Currency Converter</CurrencyTitle>
-
-        <Wrapper>
+        <InputWrapper>
           <Input
             placeholder=' '
             type='number'
             onChange={(e) => setAmount(Number(e.target.value))}
           />
           <Label>Amount</Label>
-        </Wrapper>
+        </InputWrapper>
 
         {converted !== null && (
           <SendButton onClick={() => setSentAmount(converted)}>
@@ -136,8 +93,8 @@ export const CurrencyConverter = () => {
           </SendButton>
         )}
 
-        <FromToContainer>
-          <Wrapper>
+        <TwoInputsContainer>
+          <InputWrapper>
             <Select<CurrencyOption>
               id='from-select'
               placeholder=''
@@ -146,6 +103,8 @@ export const CurrencyConverter = () => {
               onChange={handleFromChange}
               styles={customStyles}
               isSearchable={false}
+              menuPortalTarget={document.body}
+              menuPosition='fixed'
               onFocus={() => setFromFocused(true)}
               onBlur={() => setFromFocused(false)}
             />
@@ -155,8 +114,8 @@ export const CurrencyConverter = () => {
             >
               From
             </FloatingLabelFrom>
-          </Wrapper>
-          <Wrapper>
+          </InputWrapper>
+          <InputWrapper>
             <Select<CurrencyOption>
               id='to-select'
               placeholder=''
@@ -165,6 +124,8 @@ export const CurrencyConverter = () => {
               onChange={handleToChange}
               styles={customStyles}
               isSearchable={false}
+              menuPortalTarget={document.body}
+              menuPosition='fixed'
               onFocus={() => setToFocused(true)}
               onBlur={() => setToFocused(false)}
             />
@@ -174,8 +135,8 @@ export const CurrencyConverter = () => {
             >
               To
             </FloatingLabelTo>
-          </Wrapper>
-        </FromToContainer>
+          </InputWrapper>
+        </TwoInputsContainer>
 
         <Result>
           {loading
@@ -186,7 +147,7 @@ export const CurrencyConverter = () => {
             ? `${amount} ${fromCurrency} = ${converted.toFixed(2)} ${toCurrency}`
             : "Enter amount"}
         </Result>
-      </BlurWrapper>
+      </GlassBackground>
     </MainWrapper>
   );
 };
