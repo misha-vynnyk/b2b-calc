@@ -7,7 +7,7 @@ const textColor = "#ffffff";
 export const customStyles: StylesConfig<CurrencyOption, false> = {
   control: (base, state) => ({
     ...base,
-    minWidth: "130px",
+    minWidth: "100px",
     backgroundColor: "rgba(255, 255, 255, 0.05)",
     backdropFilter: "blur(12px) saturate(180%)",
     borderColor: state.isFocused ? "rgba(52, 88, 249, 0.5)" : "rgba(255, 255, 255, 0.18)",
@@ -75,7 +75,6 @@ export const MainWrapper = styled.div`
   position: relative;
   border-radius: 16px;
   transition: all 0.3s ease-in-out;
-
   border: 2px solid rgba(255, 253, 253, 0.2);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);

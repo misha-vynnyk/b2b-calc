@@ -39,8 +39,16 @@ export const RadioGroup = styled.div`
 export const Result = styled.div`
   margin-top: 1.5rem;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const ResultContainer = styled.div`
-  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+`;
+
+export const Disclaimer = styled.div`
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto;
 `;
